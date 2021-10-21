@@ -1,0 +1,35 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pv-migrate
+spec:
+  template:
+    spec:
+      containers:
+      - image: $TOOLS_IMAGE
+        imagePullPolicy: Always
+        command: ["/bin/sh"]
+        args: ["-c", "rsync -av /src/* /dst"]
+        name: ubi
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: FallbackToLogsOnError
+        securityContext:
+          privileged: true
+        volumeMounts:
+         - mountPath: /src
+           name: src
+         - mountPath: /dst
+           name: dst
+      dnsPolicy: ClusterFirst
+      restartPolicy: Never
+      schedulerName: default-scheduler
+      serviceAccount: migration
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: src
+        persistentVolumeClaim:
+          claimName: $PVC
+      - name: dst
+        persistentVolumeClaim:
+          claimName: $TARGET_PVC
