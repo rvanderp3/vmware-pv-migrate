@@ -4,7 +4,7 @@ The intent of this project is to provide an example workflow of how one can migr
 
 # Requirements
 
-- `govc` is installed and on path
+- `govc` is installed and on the path
 - GOVC environment variables are exported such that govc can create a virtual disk on the desired datastore
 - `oc` is installed and on the path
 - user account with cluster-admin privileges on the OpenShift cluster where the storage is to be migrated
