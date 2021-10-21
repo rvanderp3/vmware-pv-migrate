@@ -26,7 +26,7 @@ Migration follows this workflow:
 3. Create a virtual disk of the same size in the target datastore
 4. Create a temporary PV/PVC referencing the new virtual disk
 5. Start a `job` to migrate data from the original to the new virtual disk
-6. Set the retention policy on the original PV to retain to ensure the original disk remains in the event the migration is unsuccessful
+6. Set the retention policy on the original PV to `Retain` to ensure the original disk remains in the event the migration is unsuccessful
 7. Delete the temporary and original PVCs/PVs
 8. Create new PV and PVC(of the same name as the original PVC) pointing to the new virtual disk
 9. Scale up workloads
