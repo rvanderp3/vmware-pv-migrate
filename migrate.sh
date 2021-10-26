@@ -6,7 +6,7 @@ export TARGET_PVC=migrated-$PVC
 
 function MIGRATE_PV_GET_RESOURCES() {
     echo getting PVC and PVs to be migrated
-    oc get pvc $VC -o json > /tmp/pvc.json    
+    oc get pvc $PVC -o json > /tmp/pvc.json    
     export SOURCE_PV=$(cat /tmp/pvc.json | jq -r '.spec.volumeName')
     export TARGET_PV=migrated-$SOURCE_PV
     oc get pv $SOURCE_PV -o json > /tmp/pv.json            
