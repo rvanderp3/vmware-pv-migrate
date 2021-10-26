@@ -1,6 +1,8 @@
 # Overview
 
-The intent of this project is to provide an example workflow of how one can migrate persistent volumes between datastores.
+The intent of this project is to provide an example workflow of how one can migrate persistent volumes between datastores.  
+
+Note: These steps were compiled from tests in my environment.  You are responsible for ensuring that you backup data and test any migration to ensure data is migrated properly.
 
 # Requirements
 
