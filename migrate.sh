@@ -69,7 +69,6 @@ function MIGRATE_PV_SWITCH_TO_MIGRATED_DATA() {
     echo original data is located at $(cat /tmp/pv.json | jq -r '.spec.vsphereVolume.volumePath')
     oc patch pv $SOURCE_PV -p '{"spec":{"persistentVolumeReclaimPolicy":"Retain"}}'
     oc delete pvc $PVC
-    oc delete pv $SOURCE_PV    
 
     echo creating new PV pointing to the migrated vmdk
     cat /tmp/pv.json | jq -r '.spec.vsphereVolume.volumePath="[$TARGET_DATASTORE] $TARGET_FOLDER/$TARGET_PV.vmdk"
